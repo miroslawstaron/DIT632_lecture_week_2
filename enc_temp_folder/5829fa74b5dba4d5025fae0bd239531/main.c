@@ -18,7 +18,7 @@ int main(int argc, char* argv)
 
 	// dynamic_person_example();
 
-	// dynamic_person_casting();
+	dynamic_person_casting();
 
 	// returning the code for OK
 	return 0;
