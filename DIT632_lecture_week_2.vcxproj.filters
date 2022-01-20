@@ -30,6 +30,9 @@
     <ClCompile Include="struct_pointers.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bits_and_bytes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function_declaration.h">
