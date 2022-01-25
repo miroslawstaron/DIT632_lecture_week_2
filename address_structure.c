@@ -10,7 +10,7 @@
 struct address {
     char lname[20];     // last name
     char fname[20];     // first name
-    char street[20];    // street address
+    char *street;    // street address
     int age;            // age
 };
 
@@ -18,7 +18,7 @@ struct address {
 typedef struct {
     char lname[20];     // last name
     char fname[20];     // first name
-    char street[20];    // street address
+    char *street;    // street address
     int age;            // age
 } address2;
 
@@ -31,6 +31,7 @@ void address_example() {
 
     // declaring a variable of type address
     struct address addressInfo;
+    addressInfo.street = (char*)malloc(sizeof(char));
  
 
     // and of address2
@@ -40,7 +41,7 @@ void address_example() {
     gets(addressInfo.street, 20);
 
     // this will lead to a problem because we have not defined conversion
-    // aInfo2 = addressInfo;
+    aInfo2.street = addressInfo.street;
 
     // we can fix it if we use the same type, address2 or struct address 
     // for both variables
@@ -56,6 +57,8 @@ void address_example() {
 
     // and print the result
     puts(addressInfo.street);
+
+    free(addressInfo.street);
 
     // what we can see is that we the strings are copied using deep copy
     // that is because the memory is reserved for them when creating objects

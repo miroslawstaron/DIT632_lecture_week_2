@@ -78,13 +78,16 @@ void dynamic_person_casting()
 	pPerson1ShortVersion = (sPerson*)pPerson1;
 
 	printf("pPersonShortVersion: %s\n", pPerson1ShortVersion->strName);
+	char* pPointer = &pPerson1ShortVersion->strName[20];
+	printf("pPersonShortVersion address: %s\n", pPointer);
 
 	// Let's see how this looks like in memory
 	// let's put a breakpoint on line 87 and add a watch
 
 	// now, here we need to be very careful, as we only have one copy
 	// of the person
-	free(pPerson1);
+	free(pPointer);
+	
 
 	// the following is legal and compile, but
 	// will leave "strAddress" in the memory as pPerson1ShorterVersion 

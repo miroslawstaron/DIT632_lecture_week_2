@@ -40,11 +40,12 @@
   // this value is sometimes called a mask
   // a mask can be used to check if a particular bit is set
   // a bit is set if its value == 1
+  // bit1 = 0b 0000 0001 * 2 = 0b 0000 0010 
 #define bit1 1
 
 // bit2 is the value of the second bit
 // the value is 2 = 2^1 - two to the power of 1 (second bit)
-#define bit2 2
+#define bit2 0x02
 
 // bit3 is the value of the third bit
 // the value is 2^2 = 4
@@ -84,9 +85,11 @@ int main_bits_and_bytes(void) {
     // as pure byte, not in U2 binary conding system
     unsigned char one_byte;
 
+    // byte one_byte
+
     // when we assign the value, however, we need to convert the type
     // for example like this:
-    one_byte = (char)20;
+    one_byte = (char) 20;
 
     // we can also print it directly as a value
     // please note that we use %d as the formatting string here
@@ -94,7 +97,7 @@ int main_bits_and_bytes(void) {
 
     // TODO: change that to %c and see what happens
 
-    // decimal 20 == 0x14 == 0b00010100
+    // decimal 20 == 0x14 == 0b 0001 0100
     // this means that bit 3 should be set to 1
     // and bit number 5 should be set to 1
     // so, let's check if that is the case
@@ -102,18 +105,18 @@ int main_bits_and_bytes(void) {
 
     // let's check if that is the case
     if (one_byte == another_byte)
-        printf("Comparing bytes: Both bytes have the same number! \n");
+        printf("1: Comparing bytes: Both bytes have the same number! \n");
 
     // Let's do the same with the #define
     if (one_byte == (bit3 + bit5))
-        printf("Comparing a byte to two bits: Both bytes have the same number! \n");
+        printf("2: Comparing a byte to two bits: Both bytes have the same number! \n");
 
     // now, about bit masking
     // the expression in this statement
     // means that we check whether one_byte has bits 3 and 5 set to 1
     // and all the rest of the bits set to 0
     if (one_byte == (bit3 | bit5))
-        printf("Comparing a byte to a mask: Both bytes have the same number! \n");
+        printf("3: Comparing a byte to a mask: Both bytes have the same number! \n");
 
     // so, if we can mask a bit, we can also set it, right?
     unsigned char bit_8_is_set = 0b00000000 | bit8;
@@ -122,6 +125,8 @@ int main_bits_and_bytes(void) {
     printf("Value of the 8th bit is: %d\n", bit_8_is_set);
 
     // we can also un-set it == clear it
+    // bit8 = 0b1000 0000
+    // ~bit8 = 0b0111 1111
     unsigned char bit_8_is_not_set = 0b11111111 & ~bit8;
 
     // let's see what we get:
@@ -130,7 +135,7 @@ int main_bits_and_bytes(void) {
     // Finally, let's shift some bits around in a byte
     // let's say we have number 1
     // let's use hexadecimal notation to make it more interesting
-    byte number_one = 0x01; // == 0b00000001
+    byte number_one = 0x01; // == 0b0000 0001
 
     // let's see what we get:
     printf("Value of number_one is: %d\n", number_one);
@@ -139,7 +144,7 @@ int main_bits_and_bytes(void) {
     number_one = number_one << 1;
 
     // let's see what we get:
-    // 0b00000001 << 1 == 0b00000010
+    // 0b0000 0001 << 2 == 0b0000 0100 
     printf("Value of number_one after shifting bits is: %d\n", number_one);
 
     // let's do that one more time:
@@ -150,8 +155,8 @@ int main_bits_and_bytes(void) {
     printf("Value of number_one after shifting bits one more time is: %d\n", number_one);
 
     // how about we shift it 6 bits to the left
-    // we should get: 0b00000100 << 6 = 0b100000000
-    number_one = number_one << 6;
+    // we should get: 0b00000100 >> 2 = 0b000000001
+    number_one = number_one >> 2;
 
     // let's see what we get
     printf("Value of number_one after shifting 6 more bits is: %d\n", number_one);

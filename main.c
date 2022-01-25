@@ -14,9 +14,9 @@ int main(int argc, char* argv)
 	// let's define program result to make sure that we actually catch problems and pass them on
 	int result = 0;
 	
-	result = main_bits_and_bytes();
+	// result = main_bits_and_bytes();
 
-	// swap_example();
+	swap_example();
 
 	// demo_printlist();
 
