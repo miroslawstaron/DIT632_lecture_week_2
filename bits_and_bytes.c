@@ -41,10 +41,10 @@
   // a mask can be used to check if a particular bit is set
   // a bit is set if its value == 1
   // bit1 = 0b 0000 0001 * 2 = 0b 0000 0010 
-#define bit1 1
+#define bit1 0b1
 
 // bit2 is the value of the second bit
-// the value is 2 = 2^1 - two to the power of 1 (second bit)
+// the value is 2 = 2*1
 #define bit2 0x02
 
 // bit3 is the value of the third bit
@@ -98,10 +98,12 @@ int main_bits_and_bytes(void) {
     // TODO: change that to %c and see what happens
 
     // decimal 20 == 0x14 == 0b 0001 0100
+	// decimal 66 == 0x42 == 0b 0100 0010
     // this means that bit 3 should be set to 1
     // and bit number 5 should be set to 1
     // so, let's check if that is the case
     unsigned char another_byte = 0b00010100;
+	// unsigned char another_byte = 0b01000010;
 
     // let's check if that is the case
     if (one_byte == another_byte)
@@ -115,6 +117,10 @@ int main_bits_and_bytes(void) {
     // the expression in this statement
     // means that we check whether one_byte has bits 3 and 5 set to 1
     // and all the rest of the bits set to 0
+	// bit3 ==        0b 0000 0100
+	// bit5 ==        0b 0001 0000
+    // 
+	// bit3 & bit5 == 0b 0000 0000
     if (one_byte == (bit3 | bit5))
         printf("3: Comparing a byte to a mask: Both bytes have the same number! \n");
 
@@ -125,9 +131,9 @@ int main_bits_and_bytes(void) {
     printf("Value of the 8th bit is: %d\n", bit_8_is_set);
 
     // we can also un-set it == clear it
-    // bit8 = 0b1000 0000
+    // bit8 =  0b1000 0000
     // ~bit8 = 0b0111 1111
-    unsigned char bit_8_is_not_set = 0b11111111 & ~bit8;
+    unsigned char bit_8_is_not_set = 0b01111111 & ~bit8;
 
     // let's see what we get:
     printf("Value of the 8th bit cleared is: %d\n", bit_8_is_not_set);
@@ -142,6 +148,7 @@ int main_bits_and_bytes(void) {
 
     // now, let's shift the bits of that number to the left
     number_one = number_one << 1;
+	// 0b0000 0001 << 1 == 0b0000 0010
 
     // let's see what we get:
     // 0b0000 0001 << 2 == 0b0000 0100 
@@ -154,12 +161,12 @@ int main_bits_and_bytes(void) {
     // let's see what we get:
     printf("Value of number_one after shifting bits one more time is: %d\n", number_one);
 
-    // how about we shift it 6 bits to the left
+    // how about we shift it 2 bits to the right
     // we should get: 0b00000100 >> 2 = 0b000000001
     number_one = number_one >> 2;
 
     // let's see what we get
-    printf("Value of number_one after shifting 6 more bits is: %d\n", number_one);
+    printf("Value of number_one after shifting 2 bits to the right is: %d\n", number_one);
 
     // wrong, we get 0....
 

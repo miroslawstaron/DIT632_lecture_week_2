@@ -16,11 +16,11 @@ int main(int argc, char* argv)
 	
 	// result = main_bits_and_bytes();
 
-	swap_example();
+	// swap_example();
 
 	// demo_printlist();
 
-	// address_example();
+	address_example();
 
 	// dynamic_person_example();
 

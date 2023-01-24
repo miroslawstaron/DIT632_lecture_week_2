@@ -65,6 +65,7 @@ void printlist2(char* const templist[])
 		puts(templist[n]);
 
 		// now, what if we make a mistake here and overwrite the string
-		//templist[n] = "TEST";
+		// templist[n] = "TEST";
+		// templist = &s; 
 	}
 }
