@@ -12,7 +12,7 @@
 struct address {
     char lname[20];     // last name
     char fname[20];     // first name
-    char *street;    // street address
+    char *street;       // street address
     int age;            // age
 };
 
@@ -20,7 +20,7 @@ struct address {
 typedef struct {
     char lname[20];     // last name
     char fname[20];     // first name
-    char *street;    // street address
+    char *street;       // street address
     int age;            // age
 } address_type;
 
@@ -70,17 +70,20 @@ void address_example() {
     // NOTE! This is a shallow copy so that the pointer is only being copied, 
     // not the actual data
     aInfo2.street = addressInfo.street;
+    
     printf("Street #2: %s\n", aInfo2.street);
 
     // Let's create the third variable
     // that will point to the same place
     struct address aInfo3 = addressInfo;
+	aInfo3.street = malloc(30 * sizeof(char));
 
     // the name of the street should be this one too
    printf("Street #3: %s\n", aInfo3.street);
 
     // and what happens if we change the name of the street in one of them?
     puts("Provide the new street for Info 3: ");
+    
     scanf("%s", aInfo3.street);
 
     // and print the result
@@ -89,6 +92,7 @@ void address_example() {
     printf("Address for the third variable: %s\n", aInfo3.street);
 
 	free(addressInfo.street);
+	free(aInfo3.street);
 
     // what we can see is that we the strings are copied using deep copy
     // that is because the memory is reserved for them when creating objects

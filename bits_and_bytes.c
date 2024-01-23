@@ -9,8 +9,8 @@
  * - know that everything in C start from 0, not from 1
  * - a good thing is to have the ASCII table at hand: https://www.asciitable.com/
  *
- * (c) Miroslaw Staron, 2022
- * DIT632, Lecture 2
+ * (c) Miroslaw Staron, 2022, 2023, 2024
+ * DIT632, DIT633, Lecture 2
  */
 
  /*
