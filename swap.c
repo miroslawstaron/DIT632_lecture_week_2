@@ -37,6 +37,7 @@ int swap(int *left, int* right)
 	int temp;	// temporary variable
 
 	printf("Address value: %d\n", left);
+	printf("Value of left is %d\n", *left);
 
 	// here is where the swapping takes place
 	temp = *left;
@@ -60,7 +61,7 @@ void swap_example()
 	int d = b;
 
 	swap(&a, &b);
-	printf("a: %d, b: %d\n", a, b);
+	// printf("Case 1: a: %d, b: %d\n", a, b);
 
 	char *pX = malloc(10 * sizeof(char)); 
 	
@@ -75,18 +76,22 @@ void swap_example()
 	// and returns an integer
 
 	// int swap(int* left, int* right)
+	
 	int (*foo)(int*, int*);
 	
 	// this is a very different than the line above
 	// because it means that foo is a function that takes two pointers as arguments
 	// and returns a pointer to an int
-	// int* foo(int*, int*);
+	// int *foo(int*, int*);
 
+	
+	
 	// now, let's assign that pointer to swap 
 	// note the signature
 	foo = &swap;
-
-	pX = foo; 
+	
+	printf("The value of foo is: %d\n", foo);
+ 
 
 	// note that we use pointers, which are passed by value
 	// the values of the pointers point to the place in memory (stack)
@@ -95,7 +100,7 @@ void swap_example()
 
 	char result = *((char*)foo);
 
-	printf("pX: %c\n", result);
+	printf("decimal value of the pointer to foo: %d\n", result);
 
 	// print variables
 	printf("Left: %d, right: %d\n", a, b);

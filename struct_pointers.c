@@ -27,17 +27,17 @@ void dynamic_person_example()
 	pPerson = malloc(sizeof(sPerson));
 
 	// let's print the person's name
-	printf("Person's name is: %s", (*pPerson).strName);
+	printf("Person's name is: %s\n", (*pPerson).strName);
 
 	// Note! I use -> instead of (*pPerson).strName
 	// the notation is equivalent
-	printf("Person's name is: %s", pPerson->strName);
+	printf("Person's name is: %s\n", pPerson->strName);
 
 	// let's fill in the name with something useful
-	puts("What's the name? ");
-	gets(pPerson->strName, 20);
+	puts("Input name ");
+	fgets(pPerson->strName, 20, stdin);
 
-	printf("What's the age? ");
+	printf("Input age ");
 	scanf("%d", &pPerson->iAge);
 
 	// version #2, which works, but can lead to severe errors!
@@ -48,8 +48,8 @@ void dynamic_person_example()
 	// so, it is allowed, but do not use it
 	//scanf("%d", pPerson);
 
-	// and let's print the person's name
-	printf("Person's name is: %s, and age: %d", pPerson->strName, pPerson->iAge);
+	// and let's print the person's name		
+	printf("Person's name is: %s, and age: %d\n", pPerson->strName, pPerson->iAge);
 
 	// and we free the memory after we are done with the person
 	free(pPerson);
@@ -68,6 +68,7 @@ void dynamic_person_casting()
 
 	// setting the name of the person
 	// we need to use the strcpy as we need to copy between the stack ("Name") and the heap
+	
 	strcpy(pPerson1->strName, "Name");
 	strcpy(pPerson1->strAddress, "Johnny's street 12");
 	pPerson1->iAge = 21;
@@ -78,7 +79,9 @@ void dynamic_person_casting()
 	pPerson1ShortVersion = (sPerson*)pPerson1;
 
 	printf("pPersonShortVersion: %s\n", pPerson1ShortVersion->strName);
+	
 	char* pPointer = &pPerson1ShortVersion->strName[20];
+	
 	printf("pPersonShortVersion address: %s\n", pPointer);
 
 	// Let's see how this looks like in memory
@@ -86,15 +89,20 @@ void dynamic_person_casting()
 
 	// now, here we need to be very careful, as we only have one copy
 	// of the person
-	free(pPointer);
+	// free(pPointer);
 	
 
 	// the following is legal and compile, but
 	// will leave "strAddress" in the memory as pPerson1ShorterVersion 
 	// does not have that field
-	// free(pPerson1ShortVersion)
+	// free(pPerson1ShortVersion);
 
 	// but this is not allowed
 	// because the "common" part of the variable has already been freed
-	// free(pPerson1); free(pPerson1ShortVersion); 
+	printf("Value of the pointer is %x\n", pPerson1);
+	printf("pPerson1: %s\n", pPerson1->strName);
+	free(pPerson1); 
+	printf("Value of the pointer after free is %x\n", pPerson1);
+	
+	printf("pPerson1: %s\n", pPerson1->strName);
 }

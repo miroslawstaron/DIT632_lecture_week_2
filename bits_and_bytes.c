@@ -49,9 +49,9 @@
 
 // bit3 is the value of the third bit
 // the value is 2^2 = 4
-#define bit3 4
+#define bit3 0b100
 #define bit4 8
-#define bit5 16
+#define bit5 0b10000
 #define bit6 32
 #define bit7 64
 #define bit8 128
@@ -63,7 +63,6 @@ typedef unsigned char byte;
 
 // we could also do it more "brute force" using define
 // #define byte unsigned char
-
 
 /**
  * Main function for the program.
@@ -83,13 +82,13 @@ int main_bits_and_bytes(void) {
     // please note that I am using keyword "unsigned" here
     // this means that I want the compiler to treat this variable
     // as pure byte, not in U2 binary conding system
-    unsigned char one_byte;
+    // unsigned char one_byte;
 
-    // byte one_byte
+    byte one_byte;
 
     // when we assign the value, however, we need to convert the type
     // for example like this:
-    one_byte = (char) 20;
+    one_byte = (byte) 20;
 
     // we can also print it directly as a value
     // please note that we use %d as the formatting string here
@@ -103,6 +102,7 @@ int main_bits_and_bytes(void) {
     // and bit number 5 should be set to 1
     // so, let's check if that is the case
     unsigned char another_byte = 0b00010100;
+    
 	// unsigned char another_byte = 0b01000010;
 
     // let's check if that is the case
@@ -119,8 +119,8 @@ int main_bits_and_bytes(void) {
     // and all the rest of the bits set to 0
 	// bit3 ==        0b 0000 0100
 	// bit5 ==        0b 0001 0000
-    // 
-	// bit3 & bit5 == 0b 0000 0000
+	// bit3 | bit5 == 0b 0001 0100
+    // bit3 & bit5 == 0b 0000 0000
     if (one_byte == (bit3 | bit5))
         printf("3: Comparing a byte to a mask: Both bytes have the same number! \n");
 
@@ -133,7 +133,7 @@ int main_bits_and_bytes(void) {
     // we can also un-set it == clear it
     // bit8 =  0b1000 0000
     // ~bit8 = 0b0111 1111
-    unsigned char bit_8_is_not_set = 0b01111111 & ~bit8;
+    unsigned char bit_8_is_not_set = 0b11111111 & ~bit8;
 
     // let's see what we get:
     printf("Value of the 8th bit cleared is: %d\n", bit_8_is_not_set);
@@ -141,7 +141,7 @@ int main_bits_and_bytes(void) {
     // Finally, let's shift some bits around in a byte
     // let's say we have number 1
     // let's use hexadecimal notation to make it more interesting
-    byte number_one = 0x01; // == 0b0000 0001
+    byte number_one = bit8 + bit7; // == 0b0000 0001
 
     // let's see what we get:
     printf("Value of number_one is: %d\n", number_one);
@@ -159,16 +159,15 @@ int main_bits_and_bytes(void) {
     number_one = number_one << 1;
 
     // let's see what we get:
-    printf("Value of number_one after shifting bits one more time is: %d\n", number_one);
+    printf("Value of number_one after shifting bits one more time is: %x\n", number_one);
 
     // how about we shift it 2 bits to the right
     // we should get: 0b00000100 >> 2 = 0b000000001
     number_one = number_one >> 2;
+    
 
     // let's see what we get
-    printf("Value of number_one after shifting 2 bits to the right is: %d\n", number_one);
-
-    // wrong, we get 0....
+    printf("Value of number_one after shifting 2 bits to the right is: %x\n", number_one);
 
 
     // printf to say goodbye

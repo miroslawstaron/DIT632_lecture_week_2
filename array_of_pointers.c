@@ -20,7 +20,7 @@ void demo_printlist(void) {
 	// since we initialize the variable here, we could just skip "MAX_ELEMENTS" here
 	// just to keep track and make sure we reserve the right amount of memory 
 	// in all other references to the list
-	char* list[MAX_ELEMENTS] = {"Peter", 
+	char* list[MAX_ELEMENTS] = { "NULL",
 								"Kalle", 
 								"Oskar", 
 								"Sven"};		// declaration of the list of pointers, here pointers to strings
